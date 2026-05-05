@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ai-agent-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      auto-startup: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19999/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+
+openai:
+  base-url: https://api.groq.com/openai/v1/chat/completions
+  api-key: test-key
+  model: test-model
+  temperature: 0.7
+  max-tokens: 100
+  connect-timeout-ms: 3000
+  read-timeout-ms: 5000
+
+logging:
+  level:
+    root: WARN
+    com.aiworkflow: INFO

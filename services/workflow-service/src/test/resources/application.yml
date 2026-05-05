@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: workflow-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dummy
+    username: dummy
+    password: dummy
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  flyway:
+    enabled: false
+  kafka:
+    bootstrap-servers: localhost:9092
+
+# Disable Kafka producer — use StubEventPublisher instead
+kafka:
+  enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19999/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    instanceId: ${spring.application.name}:${server.port:8080}
+    preferIpAddress: true
+    hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.aiworkflow: INFO

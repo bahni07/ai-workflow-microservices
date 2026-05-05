@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ai-agent-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: ai-agent-service
+      auto-offset-reset: earliest
+    producer:
+      acks: all
+      retries: 3
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+openai:
+  base-url: ${OPENAI_BASE_URL:https://api.groq.com/openai/v1/chat/completions}
+  api-key: ${GROQ_API_KEY:}
+  model: ${OPENAI_MODEL:llama-3.1-8b-instant}
+  temperature: 0.7
+  max-tokens: 100
+  connect-timeout-ms: 3000
+  read-timeout-ms: 5000
